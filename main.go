@@ -38,6 +38,7 @@ func serveApplication() {
 	protectedRoutes := router.Group("/api")
 	protectedRoutes.Use(middleware.JWTAuthMiddleware())
 	protectedRoutes.POST("/entries", controller.AddEntry)
+	protectedRoutes.GET("/entries/:id", controller.GetEntry)
 	protectedRoutes.GET("/entries", controller.GetAllEntries)
 
 	err := router.Run(":8000")

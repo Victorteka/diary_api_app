@@ -18,3 +18,12 @@ func (entry *Entry) Save() (*Entry, error) {
 	}
 	return entry, nil
 }
+
+func FindEntryById(id int64) (Entry, error) {
+	var entry Entry
+	err := database.Database.Where("id=?", id).Find(&entry).Error
+	if err != nil {
+		return Entry{}, err
+	}
+	return entry, nil
+}
